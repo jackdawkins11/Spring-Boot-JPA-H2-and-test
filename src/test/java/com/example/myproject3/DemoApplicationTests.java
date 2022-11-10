@@ -43,5 +43,12 @@ class DemoApplicationTests {
 		user.setName("jack");
 		user.setPassword("passwordA1");
 		assertThat( user.getName().equals("jack") && user.getPassword().equals("passwordA1") );
+	
+		User user2 = this.restTemplate.postForObject("http://localhost:" + port + "/",
+				"{ \"name\": \""+user.getName()+"\", \"password\": \"" + user.getPassword() + "\"}",
+				User.class);
+		assertThat( user.getName().equals(user2.getName()) && user.getPassword().equals(user2.getPassword()) );
+
+
 	}
 }
