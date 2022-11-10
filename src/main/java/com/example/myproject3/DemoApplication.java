@@ -47,11 +47,16 @@ class MyController {
 		return "Hello from MyController!";
 	}
 
-	@PostMapping("/addUser")
-	public User addUser(@RequestBody User user){
-		return userRepo.save(user);
+	@PostMapping("/CreateAccount")
+	public User addUser(@RequestParam String name, @RequestParam String password){
+		User user = new User();
+		user.setName(name);
+		user.setPassword(password);
+		user = userRepo.save(user );
+		return user;
 	}
 }
+
 
 @Entity
 @Data
